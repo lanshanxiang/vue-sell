@@ -51,6 +51,7 @@
   import shopcart from 'components/shopcart/shopcart';
   import cartcontrol from 'components/cartcontrol/cartcontrol';
   import food from 'components/food/food';
+  import { getArticles } from '@/api/good';
 
   const ERR_OK = 0;
   const debug = process.env.NODE_ENV !== 'production';
@@ -94,6 +95,13 @@
       }
     },
     created() {
+      getArticles({
+        page: 1,
+        pageSize: 6,
+        viewNum: 1
+      }).then(data => {
+        console.log(data);
+      });
       this.classMap = ['decrease', 'discount', 'special', 'invoice', 'guarantee'];
 
       const url = debug ? '/api/goods' : 'http://ustbhuangyi.com/sell/api/goods';
